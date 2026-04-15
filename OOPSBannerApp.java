@@ -1,62 +1,69 @@
 /**
- * UC6 - OOPS Banner using Methods (Modular Design)
+ * UC7 - Using Class to Store Character Patterns
  */
 public class OOPSBannerApp {
 
-    public static void main(String[] args) {
+    // Inner static class
+    static class CharacterPattern {
+        private char character;
+        private String[] pattern;
 
-        // Build banner using methods
-        String[] banner = {
-            String.join(" ", getOPattern()[0], getOPattern()[0], getPPattern()[0], getSPattern()[0]),
-            String.join(" ", getOPattern()[1], getOPattern()[1], getPPattern()[1], getSPattern()[1]),
-            String.join(" ", getOPattern()[2], getOPattern()[2], getPPattern()[2], getSPattern()[2]),
-            String.join(" ", getOPattern()[3], getOPattern()[3], getPPattern()[3], getSPattern()[3]),
-            String.join(" ", getOPattern()[4], getOPattern()[4], getPPattern()[4], getSPattern()[4]),
-            String.join(" ", getOPattern()[5], getOPattern()[5], getPPattern()[5], getSPattern()[5]),
-            String.join(" ", getOPattern()[6], getOPattern()[6], getPPattern()[6], getSPattern()[6])
-        };
+        public CharacterPattern(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
 
-        for (String line : banner) {
-            System.out.println(line);
+        public char getCharacter() {
+            return character;
+        }
+
+        public String[] getPattern() {
+            return pattern;
         }
     }
 
-    // Pattern for O
-    static String[] getOPattern() {
-        return new String[]{
-            "  ***   ",
-            " ** **  ",
-            "**   ** ",
-            "**   ** ",
-            "**   ** ",
-            " ** **  ",
-            "  ***   "
-        };
-    }
+    public static void main(String[] args) {
 
-    // Pattern for P
-    static String[] getPPattern() {
-        return new String[]{
-            " *****  ",
-            " **  ** ",
-            " **  ** ",
-            " *****  ",
-            " **     ",
-            " **     ",
-            " **     "
-        };
-    }
+        CharacterPattern o = new CharacterPattern('O', new String[]{
+                "  ***   ",
+                " ** **  ",
+                "**   ** ",
+                "**   ** ",
+                "**   ** ",
+                " ** **  ",
+                "  ***   "
+        });
 
-    // Pattern for S
-    static String[] getSPattern() {
-        return new String[]{
-            "  ****  ",
-            " **     ",
-            " **     ",
-            "  ****  ",
-            "     ** ",
-            "     ** ",
-            " ****   "
-        };
+        CharacterPattern p = new CharacterPattern('P', new String[]{
+                " *****  ",
+                " **  ** ",
+                " **  ** ",
+                " *****  ",
+                " **     ",
+                " **     ",
+                " **     "
+        });
+
+        CharacterPattern s = new CharacterPattern('S', new String[]{
+                "  ****  ",
+                " **     ",
+                " **     ",
+                "  ****  ",
+                "     ** ",
+                "     ** ",
+                " ****   "
+        });
+
+        CharacterPattern[] word = {o, o, p, s};
+
+        for (int i = 0; i < 7; i++) {
+            StringBuilder line = new StringBuilder();
+
+            for (CharacterPattern cp : word) {
+                line.append(cp.getPattern()[i]).append(" ");
+            }
+
+            System.out.println(line);
+        }
     }
 }
